@@ -15,6 +15,7 @@ import java.util.Scanner;
 не забудьте про специальные типы исключений для игровых и неигровых ошибок
  */
 public class WordleGame {
+    List<String>
     Scanner scanner = new Scanner(System.in);
 
     private String answer;
