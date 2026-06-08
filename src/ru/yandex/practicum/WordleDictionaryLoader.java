@@ -3,6 +3,7 @@ package ru.yandex.practicum;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
 public class WordleDictionaryLoader {
     List<String> words = new ArrayList<>();
 
-    public WordleDictionary load(String fileName) throws IOException {
+    public WordleDictionary load(String fileName, PrintWriter log) throws IOException {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
@@ -24,6 +25,6 @@ public class WordleDictionaryLoader {
                 }
             }
         }
-        return new WordleDictionary(words);
+        return new WordleDictionary(words, log);
     }
 }

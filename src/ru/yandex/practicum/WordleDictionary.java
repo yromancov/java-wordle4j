@@ -1,5 +1,6 @@
 package ru.yandex.practicum;
 
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Random;
 
@@ -9,11 +10,13 @@ import java.util.Random;
     также этот класс может содержать рутинные функции по сравнению слов, букв и т.д.
  */
 public class WordleDictionary {
+    private PrintWriter log;
     private final Random random = new Random();
 
     private List<String> words;
 
-    public WordleDictionary(List<String> words) {
+    public WordleDictionary(List<String> words, PrintWriter log) {
+        this.log = log;
         this.words = words;
     }
 

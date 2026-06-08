@@ -1,5 +1,6 @@
 package ru.yandex.practicum;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -17,6 +18,7 @@ import java.util.Scanner;
 не забудьте про специальные типы исключений для игровых и неигровых ошибок
  */
 public class WordleGame {
+    private PrintWriter log;
     Scanner scanner = new Scanner(System.in);
     String word;
     String hint;
@@ -27,10 +29,12 @@ public class WordleGame {
     private WordleDictionary dictionary;
 
 
-    public WordleGame(WordleDictionary dictionary) {
+    public WordleGame(WordleDictionary dictionary, PrintWriter log) {
+        this.log =log;
         this.dictionary = dictionary;
         answer = dictionary.getRandom();
         steps = 6;
+
     }
 
     public void play() {
@@ -69,11 +73,9 @@ public class WordleGame {
                 }
                 steps--;
             } catch (StringIndexOutOfBoundsException e) {
-                System.out.println("Ошибка: String");
-            } catch (WordNotFoundInDictionary e) {
-                System.out.println(e.getMessage());
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                log.println("Ошибка: " + e.getMessage());
+            } catch (WordNotFoundInDictionary | IllegalArgumentException e) {
+               log.println(e.getMessage());
             }
         }
         System.out.println("Вы проиграли");
