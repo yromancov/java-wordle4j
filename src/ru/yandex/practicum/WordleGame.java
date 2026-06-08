@@ -1,5 +1,7 @@
 package ru.yandex.practicum;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /*
@@ -16,7 +18,8 @@ import java.util.Scanner;
  */
 public class WordleGame {
     Scanner scanner = new Scanner(System.in);
-
+    String word;
+    String hint = "-----";
     private String answer;
 
     private int steps;
@@ -32,14 +35,17 @@ public class WordleGame {
 
     public void play() {
         if (checkBeforeStart()) {
+            System.out.println("Игра началась");
             while (steps > 0) {
                 try {
-                    System.out.println("Игра началась");
                     System.out.println("Пишите слово, попыток: " + steps);
-                    String word = scanner.nextLine();
-                    String hint = WordleDictionary.checkWord(word, answer);
+                    word = scanner.nextLine();
+                    hint = WordleDictionary.checkWord(word, answer);
+                    if(word =="\n") { // Доработать функцию подсказки
+                        System.out.println("Слова похожие: " + giveAdvice());
+                    }
                     System.out.println(hint);
-                    if (hint.equals("+++++")){
+                    if (hint.equals("+++++")) {
                         System.out.println("Ура вы победили, загаданное слово: " + answer);
                         break;
                     }
@@ -58,6 +64,23 @@ public class WordleGame {
         } else return false;
 
 
+    }
+
+    public List<String> giveAdvice() {
+        List<String> result = new ArrayList<>();
+        for (String wordFromList : dictionary.getWords()) {
+            boolean contin = true;
+            for (int i = 0; i <hint.length(); i++) {
+            if (hint.charAt(i)=='+' && wordFromList.charAt(i)!=word.charAt(i)){
+                contin = false;
+                break;
+            }
+            }
+            if (contin){
+                result.add(wordFromList);
+            }
+        }
+        return result;
     }
 
 }
