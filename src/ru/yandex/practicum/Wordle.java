@@ -1,10 +1,7 @@
 package ru.yandex.practicum;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Collections;
-import java.util.Random;
-import java.util.Scanner;
+
 
 /*
 в главном классе нам нужно:
@@ -17,7 +14,7 @@ import java.util.Scanner;
  */
 public class Wordle {
 
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
         WordleDictionaryLoader loader = new WordleDictionaryLoader();
         WordleDictionary dictionary = loader.load("words_ru.txt");
         WordleGame wordleGame = new WordleGame(dictionary);

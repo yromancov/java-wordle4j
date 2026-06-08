@@ -46,7 +46,7 @@ public class WordleGame {
                 if (input.isEmpty()) {
                     if (hint == null) {
                         System.out.println("Подсказка недоступна введите слово");
-                    } else {// Доработать функцию подсказки
+                    } else { // Доработать функцию подсказки
                         System.out.println("Слова похожие: " + giveAdvice());
                     }
                     continue;
