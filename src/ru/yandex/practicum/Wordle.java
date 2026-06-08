@@ -1,9 +1,10 @@
 package ru.yandex.practicum;
 
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Collections;
-import java.util.Random;
-import java.util.Scanner;
+import java.io.PrintWriter;
+
 
 /*
 в главном классе нам нужно:
@@ -17,11 +18,10 @@ import java.util.Scanner;
 public class Wordle {
 
     public static void main(String[] args) throws IOException {
+        PrintWriter log = new PrintWriter(new FileWriter("wordle.log",true));
         WordleDictionaryLoader loader = new WordleDictionaryLoader();
-        WordleDictionary dictionary = loader.load("words_ru.txt");
-//    int randomIndex = (int) (Math.random() * dictionary.getWords().size());
-//    String secretWord = dictionary.getWords().get(randomIndex);
-        WordleGame wordleGame = new WordleGame(dictionary);
+        WordleDictionary dictionary = loader.load("words_ru.txt",log);
+        WordleGame wordleGame = new WordleGame(dictionary,log);
         wordleGame.play();
 
 
