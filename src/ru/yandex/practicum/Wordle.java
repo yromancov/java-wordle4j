@@ -1,6 +1,6 @@
 package ru.yandex.practicum;
 
-import java.io.FileReader;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,10 +18,10 @@ import java.io.PrintWriter;
 public class Wordle {
 
     public static void main(String[] args) throws IOException {
-        PrintWriter log = new PrintWriter(new FileWriter("wordle.log",true));
+        PrintWriter log = new PrintWriter(new FileWriter("wordle.log", true));
         WordleDictionaryLoader loader = new WordleDictionaryLoader();
-        WordleDictionary dictionary = loader.load("words_ru.txt",log);
-        WordleGame wordleGame = new WordleGame(dictionary,log);
+        WordleDictionary dictionary = loader.load("words_ru.txt", log);
+        WordleGame wordleGame = new WordleGame(dictionary, log);
         wordleGame.play();
 
 

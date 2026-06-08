@@ -30,7 +30,7 @@ public class WordleGame {
 
 
     public WordleGame(WordleDictionary dictionary, PrintWriter log) {
-        this.log =log;
+        this.log = log;
         this.dictionary = dictionary;
         answer = dictionary.getRandom();
         steps = 6;
@@ -75,7 +75,7 @@ public class WordleGame {
             } catch (StringIndexOutOfBoundsException e) {
                 log.println("Ошибка: " + e.getMessage());
             } catch (WordNotFoundInDictionary | IllegalArgumentException e) {
-               log.println(e.getMessage());
+                log.println(e.getMessage());
             }
         }
         System.out.println("Вы проиграли");
