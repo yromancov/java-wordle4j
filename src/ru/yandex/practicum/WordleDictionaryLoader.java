@@ -13,15 +13,16 @@ import java.util.List;
  */
 public class WordleDictionaryLoader {
     List<String> words = new ArrayList<>();
-    public WordleDictionary load(String fileName) throws IOException{
-        try(BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))){
-        String line;
-        while ((line = bufferedReader.readLine()) != null){
-            line =  line.toLowerCase().replace('ё','е');
-            if (line.length()==5){
-                words.add(line);
+
+    public WordleDictionary load(String fileName) throws IOException {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                line = line.toLowerCase().replace('ё', 'е');
+                if (line.length() == 5) {
+                    words.add(line);
+                }
             }
-        }
         }
         return new WordleDictionary(words);
     }

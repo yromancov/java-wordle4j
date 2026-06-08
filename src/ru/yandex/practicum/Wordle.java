@@ -1,6 +1,7 @@
 package ru.yandex.practicum;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
@@ -16,11 +17,9 @@ import java.util.Scanner;
  */
 public class Wordle {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException{
         WordleDictionaryLoader loader = new WordleDictionaryLoader();
         WordleDictionary dictionary = loader.load("words_ru.txt");
-//    int randomIndex = (int) (Math.random() * dictionary.getWords().size());
-//    String secretWord = dictionary.getWords().get(randomIndex);
         WordleGame wordleGame = new WordleGame(dictionary);
         wordleGame.play();
 
