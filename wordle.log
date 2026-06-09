@@ -1,0 +1,21 @@
+Запуск игры
+Создан список из 4159 слов
+Ход слово= Обвал, результат=-----, осталось попыток5
+Ход слово= абхаз, результат=-----, осталось попыток4
+Ход слово= отлив, результат=-^---, осталось попыток3
+Ошибка: Index 2 out of bounds for length 2
+Ошибка: Index 3 out of bounds for length 3
+Ошибка: Index 3 out of bounds for length 3
+Ошибка: Index 3 out of bounds for length 3
+Ход слово= митмитимт, результат=--+--, осталось попыток2
+Ошибка: Index 3 out of bounds for length 3
+Ошибка: Index 3 out of bounds for length 3
+Ошибка: Index 3 out of bounds for length 3
+Ход слово= митми, результат=--+--, осталось попыток1
+Ошибка: Index 2 out of bounds for length 2
+Ошибка: Index 3 out of bounds for length 3
+Ошибка: Index 2 out of bounds for length 2
+Ошибка: Index 3 out of bounds for length 3
+Ошибка: Index 3 out of bounds for length 3
+Ход слово= митмитм, результат=--+--, осталось попыток0
+Завершение работы программы

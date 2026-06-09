@@ -1,5 +1,7 @@
 package ru.yandex.practicum;
 
+import ru.yandex.practicum.exceptions.DictioanaryUploudException;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -13,9 +15,18 @@ import java.util.List;
     на выходе должен быть класс WordleDictionary
  */
 public class WordleDictionaryLoader {
+    PrintWriter log;
     List<String> words = new ArrayList<>();
 
-    public WordleDictionary load(String fileName, PrintWriter log) throws IOException {
+    public WordleDictionaryLoader(PrintWriter log) {
+        this.log = log;
+    }
+
+    public WordleDictionaryLoader() {
+        log = new PrintWriter(System.out);
+    }
+
+    public WordleDictionary load(String fileName, PrintWriter log) {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
@@ -24,7 +35,13 @@ public class WordleDictionaryLoader {
                     words.add(line);
                 }
             }
+            log.println("Создан список из " + words.size() + " слов");
+            return new WordleDictionary(words, log);
+        } catch (IOException e) {
+            log.println("Ошибка чтения файла" + e.getMessage());
+            throw new DictioanaryUploudException("Не удалось загрузить словарь " + fileName);
+
         }
-        return new WordleDictionary(words, log);
+
     }
 }
