@@ -1,6 +1,8 @@
 package ru.yandex.practicum;
 
+import java.io.PrintWriter;
 import java.util.List;
+import java.util.Random;
 
 /*
 этот класс содержит в себе список слов List<String>
@@ -8,7 +10,36 @@ import java.util.List;
     также этот класс может содержать рутинные функции по сравнению слов, букв и т.д.
  */
 public class WordleDictionary {
+    private PrintWriter log;
+    private final Random random = new Random();
 
     private List<String> words;
 
+    public WordleDictionary(List<String> words, PrintWriter log) {
+        this.log = log;
+        this.words = words;
+    }
+
+    public List<String> getWords() {
+        return words;
+    }
+
+    public String getRandom() {
+        return words.get(random.nextInt(words.size()));
+    }
+
+    public static String checkWord(String guess, String answer) {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < answer.length(); i++) {
+            char guessChar = guess.charAt(i);
+            if (guessChar == answer.charAt(i)) {
+                builder.append('+');
+            } else if (answer.indexOf(guessChar) >= 0) {
+                builder.append('^');
+            } else {
+                builder.append('-');
+            }
+        }
+        return builder.toString();
+    }
 }
