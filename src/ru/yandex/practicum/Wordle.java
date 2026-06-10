@@ -54,21 +54,37 @@ public class Wordle {
     public static void play(WordleGame wordleGame, WordleDictionary dictionary, PrintWriter log) {
         String word = null;
         String hint = null;
+        int attmepts = 3;
         Scanner scanner = new Scanner(System.in);
         if (!wordleGame.checkBeforeStart()) {
             return;
         }
         System.out.println("Игра началась");
+        System.out.printf("Правила игры: \n 1. Слово должно состоять из 5 букв\n 2. Слово должно быть на русском языке \n" +
+                " 3. Для получения подсказки нажмите Enter \n 4. Кол-во попыток %d \n 5. Кол-во подсказок %d \n", wordleGame.getSteps(), attmepts);
+
         while (wordleGame.getSteps() > 0) {
             try {
-//                        System.out.println(wordleGame.getAnswer());
+//
                 System.out.println("Пишите слово, попыток: " + wordleGame.getSteps());
+                System.out.println("Подсказок: " + attmepts);
                 String input = scanner.nextLine();
+                if (input.equals("стоп")) {
+                    System.out.println("Программа остановлена");
+                    log.println("Экстренное завершение");
+                    return;
+                }
                 if (input.isEmpty()) {
-                    if (hint == null) {
-                        System.out.println("Подсказка недоступна введите слово");
-                    } else { // Доработать функцию подсказки
-                        System.out.println("Слова похожие: " + wordleGame.giveAdvice(hint, word));
+                    if (attmepts > 0) {
+                        if (hint == null) {
+                            System.out.println("Подсказка недоступна введите слово");
+                        } else { // Доработать функцию подсказки
+                            System.out.println("Слова похожие: " + wordleGame.giveAdvice(hint, word));
+                            log.println("Выдана подсказка");
+                            attmepts--;
+                        }
+                    } else {
+                        System.out.println("Подсказки закончились");
                     }
                     continue;
                 }
@@ -83,13 +99,13 @@ public class Wordle {
                 }
                 hint = WordleDictionary.checkWord(word, wordleGame.getAnswer());
                 System.out.println(hint);
+                wordleGame.setSteps(wordleGame.getSteps() - 1);
+                log.println("Ход слово = " + input + ", результат =" + hint + ", осталось попыток " + wordleGame.getSteps());
                 if (hint.equals("+++++")) {
                     System.out.println("Ура вы победили, загаданное слово: " + wordleGame.getAnswer());
-                    break;
+                    log.println("Победа");
+                    return;
                 }
-                wordleGame.setSteps(wordleGame.getSteps() - 1);
-                log.println("Ход слово= " + input + ", результат=" + hint + ", осталось попыток" + wordleGame.getSteps());
-
             } catch (StringIndexOutOfBoundsException e) {
                 log.println("Ошибка: " + e.getMessage());
             } catch (IllegalArgumentException e) {
